@@ -1,0 +1,124 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: url('img/camera.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: new times roman;
+    color: whitesmoke;
+}
+h2{
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: left;
+    padding-top: 28px;
+    padding-left: 30px;
+}
+/* .Radio{
+	color: whitesmoke;
+	margin-left:16px;
+} */
+h7{
+	color:whitesmoke;
+	margin-top : 10px;
+	padding-left: 10px;
+}
+.col-md-8{
+    margin-top: 80px;
+    margin-left: 80px;
+    box-shadow: -1px 1px 60px 10px black;
+    background: rgba(0,0,0,0.4);
+}
+.label{
+    font-weight: normal;
+    margin-top: 15px;
+    color: whitesmoke;
+    font-size: 17px;
+}
+.control-label{
+	margin-top : 20px;
+	padding : 10px 0 0 0;
+}
+
+.form-control{
+    background:transparent;
+    border-radius: 0px;
+    border: 0px;
+    border-bottom: 1px solid white;
+    font-size: 10px;
+    margin-top: 25px;
+    height: 25px;
+    color: whitesmoke;
+}
+/* .btn-info{
+	padding-left:30px;
+    margin-top: 30px;
+    font-size: 18px;
+    width: 120px;
+    margin-left:250px;
+    margin-bottom: 50px;
+}
+.btn-warning{
+    margin-top: 30px;
+    font-size: 18px;
+    width: 120px;
+    margin-left: 80px;
+    margin-bottom: 50px;
+} */
+
+.button1{
+	margin-top : 30px;
+	margin-left: 280px;
+	padding-bottom: 40px;
+	margin-bottom: 50px;
+}
+button{
+	display: inline-block;	
+}
+#sign{
+	padding-left: 30px;
+	padding-right: 30px;
+	
+}
+#reset{
+	margin-left: 60px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+
+
+/* /////////////////////////Responsive/////////// */
+
+@media(min-width:992px){
+   
+}
+@media(min-width:768px) and (max-width:991px){
+    .label{
+        font-weight: normal;
+        margin-top: 15px;
+        font-size: 12px !important;
+    }
+
+}
+@media(min-width:575px) and (max-width:767px){
+    h2{
+        margin-top: 30px !important;
+        margin-left: 30px !important;
+    }
+    
+}
+@media(min-width:480px) and (max-width:574px){
+    h2{
+        margin-left: 20px;
+        margin-top: 5px !important;
+    }   
+}
+@media(max-width:479px){
+    h2{
+        padding-top: 50px !important;   
+    }   
+}
