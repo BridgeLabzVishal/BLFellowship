@@ -2,7 +2,6 @@ package com.bridgeLabz.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,9 +38,9 @@ public class LoginModule extends HttpServlet {
 			printWriter.print("});");
 			printWriter.print("</script>");
 			
-			//response.sendRedirect("Home.jsp");
-			requestDispatcher = request.getRequestDispatcher("Home.jsp");
-			requestDispatcher.include(request, response);
+			response.sendRedirect("Home.jsp");
+//			requestDispatcher = request.getRequestDispatcher("Home.jsp");
+//			requestDispatcher.include(request, response);
 		}
 		else
 		{

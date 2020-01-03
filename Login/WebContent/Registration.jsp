@@ -13,7 +13,7 @@
 <title>Registration</title>
 </head>
 <body>
-	<form action="RegistrationModule" method="post">
+	<form action="RegistrationModule" method="get">
 		<div class="container">
 			<div class="col-md-8">
 				<div class="row">

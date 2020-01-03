@@ -9,6 +9,10 @@
 </head>
 <body>
 <form action="LogOut" action="get">
+  <% 
+   if(session.getAttribute("Email") == null && session.getAttribute("Password") == null)
+       response.sendRedirect("Login.jsp");
+  %>
 
  <h2> Welcome !!!</h2>
  <button type="submit" value="logout" class="btn btn-primary">Logout</button>
