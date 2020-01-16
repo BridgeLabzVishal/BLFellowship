@@ -1,6 +1,6 @@
 package com.bridgeLabz.model;
 
-public class Model {
+public class Registration {
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -10,7 +10,7 @@ public class Model {
 	private int age;
 	private String city;
 	private String state;
-	private long zip;
+	private int zip;
 	
 	public String getFirstName() {
 		return firstName;
@@ -88,7 +88,7 @@ public class Model {
 		return zip;
 	}
 	
-	public void setZip(long zip) {
+	public void setZip(int zip) {
 		this.zip = zip;
 	}
 

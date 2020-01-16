@@ -26,7 +26,7 @@
 </head>
 
 <body>
-	<form action="#" method="post">
+	<form action="RegistrationServlet" method="get">
 		<div class="container">
 			<div class="col-md-11">
 
@@ -46,14 +46,14 @@
 							<i class="fa fa-user-circle" aria-hidden="true"></i>First Name
 						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control" name="FirstName"
+							<input type="text" class="form-control" name="firstname"
 								placeholder="First Name" required>
 						</div>
 						<div class="col-md-2">
 							<i class="fa fa-user-circle" aria-hidden="true"></i>Last Name
 						</div>
 						<div class="col-md-4">
-							<input type="text" class="form-control" name="LastName"
+							<input type="text" class="form-control" name="lastname"
 								placeholder="Last Name" required>
 						</div>
 					</div>
@@ -85,9 +85,9 @@
 							<i class="fa fa-mars" aria-hidden="true"></i>Gender
 						</div>
 						<div class="col-md-4 ">
-							<input type="radio" name="male" value="male">Male <input
-								type="radio" name="female" value="female">Female <input
-								type="radio" name="other" value="other">Other
+							<input type="radio" name="radio" value="male">Male <input
+								type="radio" name="radio" value="female">Female <input
+								type="radio" name="radio" value="other">Other
 						</div>
 						<div class="col-md-2">
 							<i class="fa fa-birthday-cake" aria-hidden="true"></i> DOB

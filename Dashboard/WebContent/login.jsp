@@ -24,7 +24,7 @@
 
 </head>
 <body>
-	<form action="" method="post">
+	<form action="LoginServlet" method="get">
 		<div class="container">
 			<div class="col-md-4 offset-md-1">
 				<div class="form-group">
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<div class="form-row">
 						<i class="fa fa-user-o" aria-hidden="true"></i> <label
 							class="label col-md-5 control-label">Username</label> 
@@ -51,7 +51,7 @@
 							placeholder="Username" id="username" required>
 					</div>
 				</div>
-
+ -->
 				<div class="form-group">
 					<div class="form-row">
 						<i class="fa fa-key" aria-hidden="true"></i> <label
@@ -67,7 +67,7 @@
 
 				<footer>
 					<h5>
-						New User?<a href="#" class="text-warning">SignUp</a>
+						New User?<a href="registration.jsp" class="text-warning">SignUp</a>
 					</h5>
 					<p>Forgot your password?</p>
 				</footer>

@@ -8,10 +8,10 @@
 <title>Welcome</title>
 </head>
 <body>
-<form action="LogOut" action="get">
+<form action="LogoutServlet" action="get">
   <% 
    if(session.getAttribute("Email") == null && session.getAttribute("Password") == null)
-       response.sendRedirect("Login.jsp");
+       response.sendRedirect("login.jsp");
   %>
 
  <h2> Welcome !!!</h2>
