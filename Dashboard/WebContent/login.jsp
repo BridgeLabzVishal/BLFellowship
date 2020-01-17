@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +24,10 @@
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
 <body>
 	<form action="LoginServlet" method="get">
-		<div class="container">
+		<div class="container" id="login">
 			<div class="col-md-4 offset-md-1">
 				<div class="form-group">
 					<div class="form-row ">
@@ -60,6 +62,18 @@
 							placeholder="Password" id="password" required>
 					</div>
 				</div>
+
+				<div class="form-group">
+					<div class="form-row">
+						<i class="fa fa-user-circle" aria-hidden="true"></i> <label
+							class="label col-md-5 control-label">UserType</label>
+						<div class="radiobutton">
+							<input type="radio" name="radio" id="admin" value="admin">Admin <input
+								type="radio" name="radio" id="user" value="user">User
+						</div>
+					</div>
+				</div>
+
 				<button type="submit" value="submit"
 					class="btn btn-outline-primary text-center" id="submit">Submit</button>
 				<button type="reset" value="reset"
@@ -77,4 +91,5 @@
 	</form>
 
 </body>
+
 </html>

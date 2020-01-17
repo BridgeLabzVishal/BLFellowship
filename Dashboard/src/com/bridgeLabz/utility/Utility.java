@@ -14,7 +14,6 @@ public class Utility {
 		Class.forName("com.mysql.jdbc.Driver");
 		try {
 			con = DriverManager.getConnection(dbUrl, user, passwd);
-			System.out.println("Connection establish");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

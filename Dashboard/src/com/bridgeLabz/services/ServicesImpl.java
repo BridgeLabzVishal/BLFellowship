@@ -32,7 +32,13 @@ public class ServicesImpl implements IServices {
 	{
 		jsonObject.put("email", login.getEmail());
 		jsonObject.put("password", login.getPassword());
-		return UserDetailsRepository.authenticateUser(jsonObject);	
+		jsonObject.put("userType", login.getUserType());
+		if(jsonObject.get("userType").equals("user"))
+			return UserDetailsRepository.authenticateUser(jsonObject);
+		else if(jsonObject.get("userType").equals("admin"))
+			return UserDetailsRepository.authenticateAdmin(jsonObject);
+		else
+			return false;	
 	}
 
 	@Override

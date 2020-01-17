@@ -1,3 +1,6 @@
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="com.bridgeLabz.controller.LoginServlet" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,12 +31,16 @@
 </head>
 
 <body>
+	<%
+		if (session.getAttribute("Email") == null && session.getAttribute("Password") == null)
+			response.sendRedirect("login.jsp");
+	%>
 	<div class="wrapper">
 
-		<!-- Sidebar Holder -->
+		<!-- Sidebar -->
 		<nav id="sidebar">
 			<div class="sidebar-header">
-				<h3>Dashboard</h3>
+				<img src="image/logo.png" alt="logo" /><strong>TESLA</strong>
 			</div>
 			<ul class="list-unstyled components">
 				<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
@@ -44,8 +51,8 @@
 						aria-hidden="true"></i>Registered Users
 				</a>
 					<ul class="collapse list-unstyled" id="homeSubmenu">
-						<li><a href="#"><i class="fa fa-history"
-								aria-hidden="true"></i> History</a></li>
+						<li><a href="#" id="allusers"><i class="fa fa-history"
+								aria-hidden="true"></i> All Users</a></li>
 						<li><a href="#"><i class="fa fa-location-arrow"
 								aria-hidden="true"></i> Top Locations</a></li>
 						<li><a href="#"><i class="fa fa-venus-mars"
@@ -56,8 +63,8 @@
 				<li><a href="#"><i class="fa fa-user-circle-o"
 						aria-hidden="true"></i> Latest Registered Users </a></li>
 
-				<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>
-						New User</a></li>
+				<li><a href="registration.jsp"><i class="fa fa-user"
+						aria-hidden="true"></i> New User</a></li>
 				<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>
 						Contact</a></li>
 			</ul>
@@ -65,7 +72,7 @@
 
 		<!-- Page Content Holder -->
 		<div id="content">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 				<div class="container-fluid">
 					<button type="button" id="sidebarCollapse" class="navbar-btn">
 						<span></span> <span></span> <span></span>
@@ -89,8 +96,9 @@
 											class="fa fa-pencil" aria-hidden="true"></i> Update</a></li>
 									<li dropdown-item><a href="#" class="dropdown-item"><i
 											class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
-									<li dropdown-item><a href="#" class="dropdown-item"><i
-											class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+									<li dropdown-item><a href="AdminServlet"
+										class="dropdown-item"><i class="fa fa-sign-out"
+											aria-hidden="true"></i> Logout</a></li>
 									<li dropdown-item><a href="#" class="dropdown-item"> <i
 											class="fa fa-sliders" aria-hidden="true"></i> Setting
 									</a></li>
@@ -100,64 +108,87 @@
 				</div>
 			</nav>
 
-			<h2>Collapsible Sidebar Using Bootstrap 4</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
+			<div class="line">
+				
+				<h2>Collapsible Sidebar Using Bootstrap 4</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+					enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+					enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.</p>
 
-			<div class="line"></div>
+			</div>
+			<div class="col-sm-12" style="margin-left: 10px; margin-top:8%;" id="table">
+		<table>
+			<tr class="heading">
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Email</td>
+				<td>Gender</td>
+				<td>DOB</td>
+				<td>Age</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Zip</td>
+			</tr>
+			<%
+			    JSONArray array = new JSONArray();
+				array = (JSONArray) request.getAttribute("jsonArray");
+					for (int i = 0; i < array.size(); i++) {
+						JSONObject jsonObject = (JSONObject)array.get(i);
+			%>
+			<tr>
+				<td><%=jsonObject.get("firstname")%></td>
+				<td><%=jsonObject.get("lastname")%></td>
+				<td><%=jsonObject.get("email")%></td>
+				<td><%=jsonObject.get("password")%></td>
+				<td><%=jsonObject.get("gender")%></td>
+				<td><%=jsonObject.get("dob")%></td>
+				<td><%=jsonObject.get("age")%></td>
+				<td><%=jsonObject.get("city")%></td>
+				<td><%=jsonObject.get("state")%></td>
+				
+			</tr>
+			<%
+				}
+			%>
+		</table>
+	</div> 
+			
+	
 
-			<h2>Lorem Ipsum Dolor</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
 
-			<div class="line"></div>
-
-			<h2>Lorem Ipsum Dolor</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
-
-			<div class="line"></div>
-
-			<h3>Lorem Ipsum Dolor</h3>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-				ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-				culpa qui officia deserunt mollit anim id est laborum.</p>
 		</div>
 	</div>
+	
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$("#table").hide();
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 				$(this).toggleClass('active');
 			});
+			$('#allusers').on('click', function() {
+				$(".line").hide();
+				$("#table").show();
+				
+			});
+			
+			
 		});
+			
 	</script>
+	
+
 </body>
 </html>

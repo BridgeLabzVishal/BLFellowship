@@ -30,6 +30,15 @@
 		<servlet-name>Logout</servlet-name>
 		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Admin</servlet-name>
+		<servlet-class>com.bridgeLabz.controller.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Admin</servlet-name>
+		<url-pattern>/AdminServlet</url-pattern>
+	</servlet-mapping>
 
 
 	<welcome-file-list>
