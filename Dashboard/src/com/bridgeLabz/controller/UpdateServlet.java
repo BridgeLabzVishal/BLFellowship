@@ -2,6 +2,7 @@ package com.bridgeLabz.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,76 +14,76 @@ import com.bridgeLabz.repository.UserDetailsRepository;
 import com.bridgeLabz.services.IServices;
 import com.bridgeLabz.services.ServicesImpl;
 
-//@WebServlet("/RegistrationServlet")
-public class RegistrationServlet extends HttpServlet {
-	
+@WebServlet("/UpdateServlet")
+public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	Registration update = new Registration();
+	IServices services = new ServicesImpl();
 	private static PrintWriter printWriter;
 	private static RequestDispatcher requestDispatcher;
-	IServices services = new ServicesImpl();
-	Registration registration = new Registration();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fname = request.getParameter("firstname");
-		registration.setFirstName(fname);
+		update.setFirstName(fname);
 		
 		String lname = request.getParameter("lastname");
-		registration.setLastName(lname);
+		update.setLastName(lname);
 		
 		String email = request.getParameter("email");
-		registration.setEmail(email);
+		update.setEmail(email);
 		
 		String password = request.getParameter("password");
-		registration.setPasswd(password);
+		update.setPasswd(password);
 		
 		String gender = request.getParameter("radio");
-		registration.setGender(gender);
+		update.setGender(gender);
 		
 		String dob = request.getParameter("dob");
-		registration.setDateOfBirth(dob);
+		update.setDateOfBirth(dob);
 		
 		int age = Integer.parseInt(request.getParameter("age"));
-		registration.setAge(age);
+		update.setAge(age);
 		
 		String city = request.getParameter("city");
-		registration.setCity(city);
+		update.setCity(city);
 		
 		String state = request.getParameter("state");
-		registration.setState(state);
+		update.setState(state);
 		
 		int zip = Integer.parseInt(request.getParameter("zip"));
-		registration.setZip(zip);
-		
-		response.setContentType("text/html");
-		printWriter = response.getWriter();
+		update.setZip(zip);
 		
 		boolean flag = UserDetailsRepository.getUserDetails(email);
-		if(flag == false) 
+		if(flag == true) 
 		{
-			if(services.addUser(registration))
-			{
-				printWriter.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>");
-				printWriter.print("<script type='text/javascript'>");
-				printWriter.print("$(document).ready(function(){");
-				printWriter.print("alert('Successfully Registrated!!!');");
-				printWriter.print("});");
-				printWriter.print("</script>");
+			try {
+				if(services.updateUserDetails(update))
+				{
+					printWriter.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>");
+					printWriter.print("<script type='text/javascript'>");
+					printWriter.print("$(document).ready(function(){");
+					printWriter.print("alert('Successfully Updated!!!');");
+					printWriter.print("});");
+					printWriter.print("</script>");
 
-				requestDispatcher = request.getRequestDispatcher("login.jsp");
-				requestDispatcher.include(request, response);
-			}
-		}
+					response.sendRedirect("admin.jsp");
+				}
+			} catch (ClassNotFoundException |SQLException |IOException e) {
+				e.printStackTrace();
+			} 
+		}	
 		else
 		{
 			printWriter.print("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>");
 			printWriter.print("<script type='text/javascript'>");
 			printWriter.print("$(document).ready(function(){");
-			printWriter.print("alert('Already Exists,Please Choose Another Email!!!');");
+			printWriter.print("alert('Sorry try again invalid email!!!');");
 			printWriter.print("});");
 			printWriter.print("</script>");
-			requestDispatcher = request.getRequestDispatcher("registration.jsp");
+			
+			requestDispatcher = request.getRequestDispatcher("admin.jsp");
 			requestDispatcher.include(request, response);
 		}
 	}
-		
 }

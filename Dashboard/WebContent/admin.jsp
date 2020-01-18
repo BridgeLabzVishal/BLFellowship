@@ -1,6 +1,6 @@
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
-<%@page import="com.bridgeLabz.controller.LoginServlet" %> 
+<%@page import="com.bridgeLabz.controller.LoginServlet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,7 +32,10 @@
 </head>
 
 <body>
+
+  
 	<%
+		String email=(String)session.getAttribute("Email");
 		if (session.getAttribute("Email") == null && session.getAttribute("Password") == null)
 			response.sendRedirect("login.jsp");
 	%>
@@ -44,8 +47,8 @@
 				<img src="image/logo.png" alt="logo" /><strong>TESLA</strong>
 			</div>
 			<ul class="list-unstyled components">
-				<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
-				</li>
+				<li><a href="#" id="home"><i class="fa fa-home"
+						aria-hidden="true"></i>Home</a></li>
 				<li class="active"><a href="#homeSubmenu"
 					data-toggle="collapse" aria-expanded="false"
 					class="dropdown-toggle"> <i class="fa fa-users"
@@ -54,10 +57,11 @@
 					<ul class="collapse list-unstyled" id="homeSubmenu">
 						<li><a href="#" id="allusers"><i class="fa fa-history"
 								aria-hidden="true"></i> All Users</a></li>
-						<li><a href="LocationsServlet" id="locations"><i class="fa fa-location-arrow"
-								aria-hidden="true"></i> Top Locations</a></li>
-						<li><a href="#" id="genderWise"><i class="fa fa-venus-mars"
-								aria-hidden="true"></i> Gender Wise</a></li>
+						<li><a href="LocationsServlet" id="locations"><i
+								class="fa fa-location-arrow" aria-hidden="true"></i> Top
+								Locations</a></li>
+						<li><a href="#" id="genderWise"><i
+								class="fa fa-venus-mars" aria-hidden="true"></i> Gender Wise</a></li>
 						<li><a href="#"><i class="fa fa-male" aria-hidden="true"></i>
 								Age Wise</a></li>
 					</ul></li>
@@ -93,8 +97,8 @@
 									<li dropdown-item><a href="#" class="dropdown-item"><i
 											class="fa fa-stack-exchange" aria-hidden="true"></i> Profile</a>
 									</li>
-									<li dropdown-item><a href="#" class="dropdown-item"><i
-											class="fa fa-pencil" aria-hidden="true"></i> Update</a></li>
+									<li dropdown-item><a href="EditServlet?email=<%=session.getAttribute("Email")%>" class="dropdown-item"><i
+											class="fa fa-pencil" aria-hidden="true"></i>Update</a></li>
 									<li dropdown-item><a href="#" class="dropdown-item"><i
 											class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
 									<li dropdown-item><a href="AdminServlet"
@@ -110,7 +114,7 @@
 			</nav>
 
 			<div class="line">
-				
+
 				<h2>Collapsible Sidebar Using Bootstrap 4</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
 					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -128,89 +132,124 @@
 					culpa qui officia deserunt mollit anim id est laborum.</p>
 
 			</div>
-			<div class="col-sm-12" style="margin-left: 6px; margin-top:6%;" id="users">
-		<table>
-			<tr class="heading">
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Email</td>
-				<td>Gender</td>
-				<td>DOB</td>
-				<td>Age</td>
-				<td>City</td>
-				<td>State</td>
-				<td>Zip</td>
-			</tr>
-			<%
-			    JSONArray array = new JSONArray();
-				array = (JSONArray) request.getAttribute("jsonArray");
-					for (int i = 0; i < array.size(); i++) {
-						JSONObject jsonObject = (JSONObject)array.get(i);
-			%>
-			<tr>
-				<td><%=jsonObject.get("firstname")%></td>
-				<td><%=jsonObject.get("lastname")%></td>
-				<td><%=jsonObject.get("email")%></td>
-				<td><%=jsonObject.get("gender")%></td>
-				<td><%=jsonObject.get("dob")%></td>
-				<td><%=jsonObject.get("age")%></td>
-				<td><%=jsonObject.get("city")%></td>
-				<td><%=jsonObject.get("state")%></td>
-				<td><%=jsonObject.get("zip")%></td>
-				
-			</tr>
-			<%
-				}
-			%>
-		</table>
-	</div> 
-	
-	
-	
-	<div class="col-sm-12" style="margin-left: 6px; margin-top:6%;" id="gender">
-		<table>
-			<tr class="heading">
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Email</td>
-				<td>Gender</td>
-				<td>DOB</td>
-				<td>Age</td>
-				<td>City</td>
-				<td>State</td>
-				<td>Zip</td>
-			</tr>
-			<%
-				String gender = "male";
-			    JSONArray arrayGender = new JSONArray();
-				arrayGender = array;
-					for (int i = 0; i < arrayGender.size(); i++) {
-						JSONObject jsonObject = (JSONObject)arrayGender.get(i);
-						if(jsonObject.get("gender").equals(gender)){
-			%>
-			<tr>
-				<td><%=jsonObject.get("firstname")%></td>
-				<td><%=jsonObject.get("lastname")%></td>
-				<td><%=jsonObject.get("email")%></td>
-				<td><%=jsonObject.get("gender")%></td>
-				<td><%=jsonObject.get("dob")%></td>
-				<td><%=jsonObject.get("age")%></td>
-				<td><%=jsonObject.get("city")%></td>
-				<td><%=jsonObject.get("state")%></td>
-				<td><%=jsonObject.get("zip")%></td>
-				
-			</tr>
-			<%
-						}
-				}
-						
-			%>
-		</table>
-	</div> 
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+				id="users">
+				<table>
+					<tr class="heading">
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Email</td>
+						<td>Gender</td>
+						<td>DOB</td>
+						<td>Age</td>
+						<td>City</td>
+						<td>State</td>
+						<td>Zip</td>
+					</tr>
+					<%
+						JSONArray array = new JSONArray();
+						array = (JSONArray) request.getAttribute("jsonArray");
+						for (int i = 0; i < array.size(); i++) {
+							JSONObject jsonObject = (JSONObject) array.get(i);
+					%>
+					<tr>
+						<td><%=jsonObject.get("firstname")%></td>
+						<td><%=jsonObject.get("lastname")%></td>
+						<td><%=jsonObject.get("email")%></td>
+						<td><%=jsonObject.get("gender")%></td>
+						<td><%=jsonObject.get("dob")%></td>
+						<td><%=jsonObject.get("age")%></td>
+						<td><%=jsonObject.get("city")%></td>
+						<td><%=jsonObject.get("state")%></td>
+						<td><%=jsonObject.get("zip")%></td>
 
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+				id="gender">
+				<table class="male">
+					<tr class="heading">
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Email</td>
+						<td>Gender</td>
+						<td>DOB</td>
+						<td>Age</td>
+						<td>City</td>
+						<td>State</td>
+						<td>Zip</td>
+					</tr>
+					<%
+						String genMale = "male";
+						JSONArray genderMale = new JSONArray();
+						genderMale = array;
+						for (int i = 0; i < genderMale.size(); i++) {
+							JSONObject jsonObject = (JSONObject) genderMale.get(i);
+							if (jsonObject.get("gender").equals(genMale)) {
+					%>
+					<tr>
+						<td><%=jsonObject.get("firstname")%></td>
+						<td><%=jsonObject.get("lastname")%></td>
+						<td><%=jsonObject.get("email")%></td>
+						<td><%=jsonObject.get("gender")%></td>
+						<td><%=jsonObject.get("dob")%></td>
+						<td><%=jsonObject.get("age")%></td>
+						<td><%=jsonObject.get("city")%></td>
+						<td><%=jsonObject.get("state")%></td>
+						<td><%=jsonObject.get("zip")%></td>
+
+					</tr>
+					<%
+						}
+						}
+					%>
+				</table>
+				<table class="female">
+					<tr class="heading">
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Email</td>
+						<td>Gender</td>
+						<td>DOB</td>
+						<td>Age</td>
+						<td>City</td>
+						<td>State</td>
+						<td>Zip</td>
+					</tr>
+					<%
+						String genFemale = "female";
+						JSONArray genderFemale = new JSONArray();
+						genderFemale = array;
+						for (int i = 0; i < genderFemale.size(); i++) {
+							JSONObject jsonObject = (JSONObject) genderFemale.get(i);
+							if (jsonObject.get("gender").equals(genFemale)) {
+					%>
+					<tr>
+						<td><%=jsonObject.get("firstname")%></td>
+						<td><%=jsonObject.get("lastname")%></td>
+						<td><%=jsonObject.get("email")%></td>
+						<td><%=jsonObject.get("gender")%></td>
+						<td><%=jsonObject.get("dob")%></td>
+						<td><%=jsonObject.get("age")%></td>
+						<td><%=jsonObject.get("city")%></td>
+						<td><%=jsonObject.get("state")%></td>
+						<td><%=jsonObject.get("zip")%></td>
+
+					</tr>
+					<%
+						}
+						}
+					%>
+				</table>
+			</div>
 		</div>
 	</div>
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#users").hide();
@@ -221,18 +260,23 @@
 			});
 			$('#allusers').on('click', function() {
 				$(".line").hide();
-				$("#users").show();	
+				$("#gender").hide();
+				$("#users").show();
 			});
 			$('#genderWise').on('click', function() {
 				$(".line").hide();
-				$("#gender").show();	
+				$("#users").hide();
+				$("#gender").show();
 			});
-			
-			
+			$('#home').on('click', function() {
+				$('#users').hide();
+				$('#gender').hide();
+				$('.line').show();
+			});
+
 		});
-			
 	</script>
-	
+
 
 </body>
 </html>

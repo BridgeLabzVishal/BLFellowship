@@ -1,5 +1,7 @@
 package com.bridgeLabz.services;
 
+import java.sql.SQLException;
+
 import org.json.simple.JSONObject;
 
 import com.bridgeLabz.model.Login;
@@ -48,12 +50,23 @@ public class ServicesImpl implements IServices {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean updateUserDetails(Registration registration) {
-		jsonObject.put("firstname", registration.getFirstName());
-		jsonObject.put("lastname", registration.getLastName());
-		jsonObject.put("email", registration.getEmail());
+	public boolean updateUserDetails(Registration update) throws ClassNotFoundException, SQLException {
+		jsonObject.put("firstname",update.getFirstName());
+		jsonObject.put("lastname",update.getLastName());
+		jsonObject.put("password",update.getPasswd());
+		jsonObject.put("gender",update.getGender());
+		jsonObject.put("dob",update.getDateOfBirth());
+		jsonObject.put("age",update.getAge());
+		jsonObject.put("city",update.getCity());
+		jsonObject.put("state",update.getState());
+		jsonObject.put("zip",update.getZip());
 		
 		return UserDetailsRepository.update(jsonObject);
+	}
+
+	@Override
+	public JSONObject getOneUserDetails(String email) {
+		return UserDetailsRepository.getOneUserDetails(email);
 	}
 
 }
