@@ -4,14 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import com.bridgeLabz.utility.Utility;
 
 
 public class UserDetailsRepository {
-	private static ResultSet resultSet;
+	private static ResultSet resultSet = null;
 	
 	public static boolean addUser(JSONObject jsonObject) 
 	{
@@ -29,6 +28,7 @@ public class UserDetailsRepository {
 			statement.setString(8,jsonObject.get("city").toString());
 			statement.setString(9,jsonObject.get("state").toString());
 			statement.setString(10,jsonObject.get("zip").toString());
+			
 			
 			int result = statement.executeUpdate();
 			if(result > 0)
@@ -117,7 +117,6 @@ public class UserDetailsRepository {
 	@SuppressWarnings("unchecked")
 	public static JSONArray getAllDetails() throws ClassNotFoundException, SQLException
 	{
-		JSONObject jsonObject = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
 		
 		String query = "select * from users";
@@ -127,10 +126,10 @@ public class UserDetailsRepository {
 			resultSet = statement.executeQuery();
 			while(resultSet.next())
 			{
+				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("firstname",resultSet.getString("First_Name"));
 				jsonObject.put("lastname",resultSet.getString("Last_Name"));
 				jsonObject.put("email",resultSet.getString("Email"));
-				jsonObject.put("password",resultSet.getString("Password"));
 				jsonObject.put("gender",resultSet.getString("Gender"));
 				jsonObject.put("dob",resultSet.getString("DOB"));
 				jsonObject.put("age",resultSet.getString("Age"));
@@ -143,7 +142,49 @@ public class UserDetailsRepository {
 		return jsonArray;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static JSONArray topLocations() throws ClassNotFoundException, SQLException
+	{
+		JSONArray jsonArray = new JSONArray();
+		
+		String query = "select distinct city,state from users";
+		
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
+		{
+			resultSet = statement.executeQuery();
+			while(resultSet.next())
+			{
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("city",resultSet.getString("City"));
+				jsonObject.put("state",resultSet.getString("State"));
+				jsonArray.add(jsonObject);
+			}
+		} 
+		return jsonArray;
+	}
 	
+	
+	public static PreparedStatement genderWise() throws ClassNotFoundException, SQLException
+	{
+//		JSONArray jsonArray = new JSONArray();
+		PreparedStatement statement=null;
+		
+		String query = "select * from users";
+		
+		try (Connection con = Utility.dbConnection();)
+		{
+			statement = con.prepareStatement(query);
+//			resultSet = statement.executeQuery();
+//			while(resultSet.next())
+//			{
+//				JSONObject jsonObject = new JSONObject();
+//				jsonObject.put("city",resultSet.getString("City"));
+//				jsonObject.put("state",resultSet.getString("State"));
+//				jsonArray.add(jsonObject);
+//			}
+		} 
+		return statement;
+	}
 	
 	
 	public static boolean deleteUser(String name) {

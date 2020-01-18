@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+#back{
+	margin-top:2px;
+	margin-right: 10px;
+	padding-right: 18px;
+	padding-left:18px;
+}
+#logout{
+	margin-top:2px;
+	margin-right: 10px;
+	padding-right: 15px;
+	padding-left:15px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.heading{
+	 background-color: rgb(0, 128, 255);
+	 color: #ffffff;
+	 font-weight: bold;
+}
+.heading td{
+	font-size: 16px;
+}
+td{
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

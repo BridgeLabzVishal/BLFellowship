@@ -83,7 +83,6 @@ public class LoginServlet extends HttpServlet {
 				try {
 					array = UserDetailsRepository.getAllDetails();
 					request.setAttribute("jsonArray", array);
-					
 				
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();

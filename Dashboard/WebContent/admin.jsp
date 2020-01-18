@@ -28,6 +28,7 @@
 
 <!-- Our Custom CSS -->
 <link rel="stylesheet" href="admin.css">
+
 </head>
 
 <body>
@@ -53,9 +54,9 @@
 					<ul class="collapse list-unstyled" id="homeSubmenu">
 						<li><a href="#" id="allusers"><i class="fa fa-history"
 								aria-hidden="true"></i> All Users</a></li>
-						<li><a href="#"><i class="fa fa-location-arrow"
+						<li><a href="LocationsServlet" id="locations"><i class="fa fa-location-arrow"
 								aria-hidden="true"></i> Top Locations</a></li>
-						<li><a href="#"><i class="fa fa-venus-mars"
+						<li><a href="#" id="genderWise"><i class="fa fa-venus-mars"
 								aria-hidden="true"></i> Gender Wise</a></li>
 						<li><a href="#"><i class="fa fa-male" aria-hidden="true"></i>
 								Age Wise</a></li>
@@ -127,7 +128,7 @@
 					culpa qui officia deserunt mollit anim id est laborum.</p>
 
 			</div>
-			<div class="col-sm-12" style="margin-left: 10px; margin-top:8%;" id="table">
+			<div class="col-sm-12" style="margin-left: 6px; margin-top:6%;" id="users">
 		<table>
 			<tr class="heading">
 				<td>First Name</td>
@@ -150,12 +151,12 @@
 				<td><%=jsonObject.get("firstname")%></td>
 				<td><%=jsonObject.get("lastname")%></td>
 				<td><%=jsonObject.get("email")%></td>
-				<td><%=jsonObject.get("password")%></td>
 				<td><%=jsonObject.get("gender")%></td>
 				<td><%=jsonObject.get("dob")%></td>
 				<td><%=jsonObject.get("age")%></td>
 				<td><%=jsonObject.get("city")%></td>
 				<td><%=jsonObject.get("state")%></td>
+				<td><%=jsonObject.get("zip")%></td>
 				
 			</tr>
 			<%
@@ -163,25 +164,68 @@
 			%>
 		</table>
 	</div> 
-			
 	
-
+	
+	
+	<div class="col-sm-12" style="margin-left: 6px; margin-top:6%;" id="gender">
+		<table>
+			<tr class="heading">
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Email</td>
+				<td>Gender</td>
+				<td>DOB</td>
+				<td>Age</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Zip</td>
+			</tr>
+			<%
+				String gender = "male";
+			    JSONArray arrayGender = new JSONArray();
+				arrayGender = array;
+					for (int i = 0; i < arrayGender.size(); i++) {
+						JSONObject jsonObject = (JSONObject)arrayGender.get(i);
+						if(jsonObject.get("gender").equals(gender)){
+			%>
+			<tr>
+				<td><%=jsonObject.get("firstname")%></td>
+				<td><%=jsonObject.get("lastname")%></td>
+				<td><%=jsonObject.get("email")%></td>
+				<td><%=jsonObject.get("gender")%></td>
+				<td><%=jsonObject.get("dob")%></td>
+				<td><%=jsonObject.get("age")%></td>
+				<td><%=jsonObject.get("city")%></td>
+				<td><%=jsonObject.get("state")%></td>
+				<td><%=jsonObject.get("zip")%></td>
+				
+			</tr>
+			<%
+						}
+				}
+						
+			%>
+		</table>
+	</div> 
 
 		</div>
 	</div>
 	
-
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#table").hide();
+			$("#users").hide();
+			$("#gender").hide();
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 				$(this).toggleClass('active');
 			});
 			$('#allusers').on('click', function() {
 				$(".line").hide();
-				$("#table").show();
-				
+				$("#users").show();	
+			});
+			$('#genderWise').on('click', function() {
+				$(".line").hide();
+				$("#gender").show();	
 			});
 			
 			
