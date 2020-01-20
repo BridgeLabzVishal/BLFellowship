@@ -76,7 +76,7 @@
 
 		<!-- Page Content Holder -->
 		<div id="content">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+			<nav class="navbar navbar-expand-sm navbar-light bg-light">
 				<div class="container-fluid">
 					<button type="button" id="sidebarCollapse" class="navbar-btn">
 						<span></span> <span></span> <span></span>
@@ -134,7 +134,7 @@
 					culpa qui officia deserunt mollit anim id est laborum.</p>
 
 			</div>
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 4%;"
 				id="users">
 				<table>
 					<tr class="heading">
@@ -172,7 +172,7 @@
 				</table>
 			</div>
 
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 3%;"
 				id="gender">
 				<table class="male">
 					<tr class="heading">
@@ -250,7 +250,7 @@
 				</table>
 			</div>
 
-			<div class="col-sm-12" style="margin-left: 10px; margin-top: 22%;"
+			<div class="col-sm-12" style="margin-left: 10px; margin-top: 12%;"
 				id="toplocations">
 				<table>
 					<tr class="heading">
@@ -271,8 +271,8 @@
 					%>
 				</table>
 			</div>
-			
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 4%;"
 				id="lastRegister">
 				<table>
 					<tr class="heading">
@@ -308,7 +308,6 @@
 					%>
 				</table>
 			</div>
-			
 
 			<section class="contact" style="margin-top: 20%; margin-left: 10px;">
 				<div class="container text-center">
@@ -323,6 +322,7 @@
 					</address>
 				</div>
 			</section>
+			
 		</div>
 	</div>
 
