@@ -43,11 +43,6 @@ public class ServicesImpl implements IServices {
 			return false;	
 	}
 
-	@Override
-	public boolean deleteUserDetails(String name) {
-		return UserDetailsRepository.deleteUser(name);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean updateUserDetails(Registration update) throws ClassNotFoundException, SQLException {
@@ -68,6 +63,11 @@ public class ServicesImpl implements IServices {
 	@Override
 	public JSONObject getOneUserDetails(String email) {
 		return UserDetailsRepository.getOneUserDetails(email);
+	}
+
+	@Override
+	public boolean deleteUserDetails(String email) {
+		return UserDetailsRepository.deleteUser(email);
 	}
 
 }

@@ -27,7 +27,7 @@
 
 <body>
 	<form action="LoginServlet" method="get">
-		<div class="container" id="login">
+		<div class="container">
 			<div class="col-md-4 offset-md-1">
 				<div class="form-group">
 					<div class="form-row ">

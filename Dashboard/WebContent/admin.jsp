@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  
+
 	<%
 		String email=(String)session.getAttribute("Email");
 		if (session.getAttribute("Email") == null && session.getAttribute("Password") == null)
@@ -69,8 +69,8 @@
 
 				<li><a href="registration.jsp"><i class="fa fa-user"
 						aria-hidden="true"></i> New User</a></li>
-				<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i>
-						Contact</a></li>
+				<li><a href="#" id="contact"><i class="fa fa-phone"
+						aria-hidden="true"></i> Contact</a></li>
 			</ul>
 		</nav>
 
@@ -96,10 +96,13 @@
 									<li dropdown-item><a href="#" class="dropdown-item"><i
 											class="fa fa-stack-exchange" aria-hidden="true"></i> Profile</a>
 									</li>
-									<li dropdown-item><a href="EditServlet?email=<%=session.getAttribute("Email")%>" class="dropdown-item"><i
-											class="fa fa-pencil" aria-hidden="true"></i>Update</a></li>
-									<li dropdown-item><a href="#" class="dropdown-item"><i
-											class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
+									<li dropdown-item><a
+										href="EditServlet?email=<%=session.getAttribute("Email")%>"
+										class="dropdown-item"><i class="fa fa-pencil"
+											aria-hidden="true"></i>Update</a></li>
+									<li dropdown-item><a href="#" class="dropdown-item"
+										id="delete"><i class="fa fa-trash" aria-hidden="true"></i>
+											Delete</a></li>
 									<li dropdown-item><a href="AdminServlet"
 										class="dropdown-item"><i class="fa fa-sign-out"
 											aria-hidden="true"></i> Logout</a></li>
@@ -246,6 +249,19 @@
 					%>
 				</table>
 			</div>
+			<section class="contact" style="margin-top: 20%; margin-left: 10px;">
+				<div class="container text-center">
+					<h2>CONTACT US</h2>
+					<address>
+						<strong>Contact Number :</strong> <br> +91 070459 48949 <br>
+						<strong>Mail Us :</strong> <br> contactus@bridgelabz.com <br>
+						<strong>Branch Office :</strong> <br> No 42, 15th Cross &
+						14th Main Road<br> HSR Layout Sector 4 Opposite To HSR BDA Complex,<br>
+						behind Kumarakom restaurant, Bengaluru, <br>
+						Karnataka 560102
+					</address>
+				</div>
+			</section>
 		</div>
 	</div>
 
@@ -253,6 +269,7 @@
 		$(document).ready(function() {
 			$("#users").hide();
 			$("#gender").hide();
+			$('.contact').hide();
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 				$(this).toggleClass('active');
@@ -260,17 +277,30 @@
 			$('#allusers').on('click', function() {
 				$(".line").hide();
 				$("#gender").hide();
+				$('.contact').hide();
 				$("#users").show();
 			});
 			$('#genderWise').on('click', function() {
 				$(".line").hide();
 				$("#users").hide();
+				$('.contact').hide();
 				$("#gender").show();
 			});
 			$('#home').on('click', function() {
 				$('#users').hide();
 				$('#gender').hide();
+				$('.contact').hide();
 				$('.line').show();
+			});
+			$('#delete').on('click', function() {
+				$('#users').hide();
+				$('.line').load('delete.jsp #del');
+			});
+			$('#contact').on('click', function() {
+				$(".line").hide();
+				$("#gender").hide();
+				$('#users').hide();
+				$('.contact').show();
 			});
 
 		});

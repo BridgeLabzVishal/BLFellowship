@@ -10,7 +10,7 @@ import com.bridgeLabz.model.Registration;
 public interface IServices {
 	public boolean addUser(Registration registration);
 	public boolean authentication(Login login); 
-	public boolean deleteUserDetails(String name);
+	public boolean deleteUserDetails(String email);
 	public boolean updateUserDetails(Registration update) throws ClassNotFoundException, SQLException;
 	public JSONObject getOneUserDetails(String email);
 }

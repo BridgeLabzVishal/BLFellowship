@@ -134,11 +134,6 @@ public class UserDetailsRepository {
 		return jsonArray;
 	}
 
-	public static boolean deleteUser(String name) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	public static boolean update(JSONObject jsonObject) throws ClassNotFoundException, SQLException {
 		String updateUser = "UPDATE admin SET First_Name=?,Last_Name=?,Password=?,Gender=?,DOB=?,Age=?,City=?,State=?,Zip=? WHERE Email=?";
 
@@ -185,6 +180,22 @@ public class UserDetailsRepository {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static boolean deleteUser(String email) {
+		String deleteQuery = "DELETE FROM users where Email=?";
+		
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(deleteQuery);)
+		{
+			statement.setString(1, email);
+			boolean result = statement.executeUpdate()>0;
+			return result;
+		} 
+		catch (SQLException | ClassNotFoundException e) 
+		{
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
