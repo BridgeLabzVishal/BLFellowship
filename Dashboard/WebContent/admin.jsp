@@ -32,7 +32,6 @@
 </head>
 
 <body>
-
   
 	<%
 		String email=(String)session.getAttribute("Email");

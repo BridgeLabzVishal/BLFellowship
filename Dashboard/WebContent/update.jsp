@@ -91,6 +91,24 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="form-group">
+					<div class="form-row">
+						<div class="col-md-2">
+							<i class="fa fa-key" aria-hidden="true"></i>Password
+						</div>
+						<div class="col-md-4">
+							<input type="password" name="password" class="form-control"
+								placeholder="Password" readonly="readonly" value="<%=jsonObject.get("password")%>">
+						</div>
+						<div class="col-md-2">
+							<i class="fa fa-mars" aria-hidden="true"></i>Gender
+						</div>
+						<div class="col-md-4 ">
+							<input type="text" name="gender" readonly="readonly" value="<%=jsonObject.get("gender")%>" >
+						</div>
+					</div>
+				</div>
 
 				<div class="form-group">
 					<div class="form-row">

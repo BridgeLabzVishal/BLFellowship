@@ -53,6 +53,7 @@ public class ServicesImpl implements IServices {
 	public boolean updateUserDetails(Registration update) throws ClassNotFoundException, SQLException {
 		jsonObject.put("firstname",update.getFirstName());
 		jsonObject.put("lastname",update.getLastName());
+		jsonObject.put("email", update.getEmail());
 		jsonObject.put("password",update.getPasswd());
 		jsonObject.put("gender",update.getGender());
 		jsonObject.put("dob",update.getDateOfBirth());

@@ -19,23 +19,21 @@ public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static RequestDispatcher requestDispatcher;
 	IServices services = new ServicesImpl();
-       
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String email = request.getParameter("email");
-		System.out.println("Email Getting :"+email);
-		
+
 		JSONObject jsonObject = services.getOneUserDetails(email);
-		
-		if(jsonObject!=null) {
-			System.out.println("Coming inside if block");
+
+		if (jsonObject != null) {
 			request.setAttribute("userdetails", jsonObject);
-			
+
 			HttpSession session = request.getSession();
 			session.setAttribute("Email", email);
 
 			requestDispatcher = request.getRequestDispatcher("update.jsp");
-			requestDispatcher.forward(request, response);
+			requestDispatcher.include(request, response);
 		}
 	}
 
