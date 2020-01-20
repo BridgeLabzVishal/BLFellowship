@@ -1,9 +1,8 @@
 package com.bridgeLabz.services;
 
 import java.sql.SQLException;
-
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 import com.bridgeLabz.model.Login;
 import com.bridgeLabz.model.Registration;
 import com.bridgeLabz.repository.UserDetailsRepository;
@@ -68,6 +67,11 @@ public class ServicesImpl implements IServices {
 	@Override
 	public boolean deleteUserDetails(String email) {
 		return UserDetailsRepository.deleteUser(email);
+	}
+
+	@Override
+	public JSONArray lastRegistered() {
+		return UserDetailsRepository.lastRegistered();
 	}
 
 }

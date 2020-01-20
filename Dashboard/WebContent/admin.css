@@ -168,7 +168,7 @@ ul ul a {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 80%%;
+  width: 80%;
 }
 .female{
 	margin-top:6%;
@@ -179,7 +179,7 @@ table {
 	 font-weight: bold;
 }
 .heading td{
-	font-size: 14px;
+	font-size: 16px;
 }
 td{
   border: 1px solid #dddddd;
@@ -190,8 +190,28 @@ td{
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-section{
+#toplocations{
+	padding:10px;
+	font-size:16px;
+	margin:8px;
+}
+#toplocations .heading td{
+	font-size: 18px;
+}
+#toplocations table td{
+	padding: 18px;
+}
+.contact{
 	border:2px solid blueviolet;
+	box-sizing: border-box;
+	padding: 20px;
+	width: 100%;
+}
+.contact h2{
+	text-decoration: underline;
+}
+.contact strong{
+	font-size: 18px;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES

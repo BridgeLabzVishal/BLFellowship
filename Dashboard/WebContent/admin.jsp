@@ -1,6 +1,7 @@
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.bridgeLabz.controller.LoginServlet"%>
+<%@page import="com.bridgeLabz.repository.UserDetailsRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
 <body>
 
 	<%
-		String email=(String)session.getAttribute("Email");
+		String email = (String) session.getAttribute("Email");
 		if (session.getAttribute("Email") == null && session.getAttribute("Password") == null)
 			response.sendRedirect("login.jsp");
 	%>
@@ -56,7 +57,7 @@
 					<ul class="collapse list-unstyled" id="homeSubmenu">
 						<li><a href="#" id="allusers"><i class="fa fa-history"
 								aria-hidden="true"></i> All Users</a></li>
-						<li><a href="LocationsServlet" id="locations"><i
+						<li><a href="#" id="locations"><i
 								class="fa fa-location-arrow" aria-hidden="true"></i> Top
 								Locations</a></li>
 						<li><a href="#" id="genderWise"><i
@@ -64,9 +65,8 @@
 						<li><a href="#"><i class="fa fa-male" aria-hidden="true"></i>
 								Age Wise</a></li>
 					</ul></li>
-				<li><a href="#"><i class="fa fa-user-circle-o"
+				<li><a href="#" id="latest"><i class="fa fa-user-circle-o"
 						aria-hidden="true"></i> Latest Registered Users </a></li>
-
 				<li><a href="registration.jsp"><i class="fa fa-user"
 						aria-hidden="true"></i> New User</a></li>
 				<li><a href="#" id="contact"><i class="fa fa-phone"
@@ -249,6 +249,67 @@
 					%>
 				</table>
 			</div>
+
+			<div class="col-sm-12" style="margin-left: 10px; margin-top: 22%;"
+				id="toplocations">
+				<table>
+					<tr class="heading">
+						<td>City</td>
+						<td>State</td>
+					</tr>
+					<%
+						JSONArray location = UserDetailsRepository.topLocations();
+						for (int i = 0; i < location.size(); i++) {
+							JSONObject jsonObject = (JSONObject) location.get(i);
+					%>
+					<tr>
+						<td><%=jsonObject.get("city")%></td>
+						<td><%=jsonObject.get("state")%></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			
+			<div class="col-sm-12" style="margin-left: 6px; margin-top: 6%;"
+				id="lastRegister">
+				<table>
+					<tr class="heading">
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Email</td>
+						<td>Gender</td>
+						<td>DOB</td>
+						<td>Age</td>
+						<td>City</td>
+						<td>State</td>
+						<td>Zip</td>
+					</tr>
+					<%
+						JSONArray register = new JSONArray();
+						register = UserDetailsRepository.lastRegistered();
+						for (int i = 0; i < 5; i++) {
+							JSONObject jsonObject = (JSONObject) register.get(i);
+					%>
+					<tr>
+						<td><%=jsonObject.get("firstname")%></td>
+						<td><%=jsonObject.get("lastname")%></td>
+						<td><%=jsonObject.get("email")%></td>
+						<td><%=jsonObject.get("gender")%></td>
+						<td><%=jsonObject.get("dob")%></td>
+						<td><%=jsonObject.get("age")%></td>
+						<td><%=jsonObject.get("city")%></td>
+						<td><%=jsonObject.get("state")%></td>
+						<td><%=jsonObject.get("zip")%></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			
+
 			<section class="contact" style="margin-top: 20%; margin-left: 10px;">
 				<div class="container text-center">
 					<h2>CONTACT US</h2>
@@ -256,8 +317,8 @@
 						<strong>Contact Number :</strong> <br> +91 070459 48949 <br>
 						<strong>Mail Us :</strong> <br> contactus@bridgelabz.com <br>
 						<strong>Branch Office :</strong> <br> No 42, 15th Cross &
-						14th Main Road<br> HSR Layout Sector 4 Opposite To HSR BDA Complex,<br>
-						behind Kumarakom restaurant, Bengaluru, <br>
+						14th Main Road<br> HSR Layout Sector 4 Opposite To HSR BDA
+						Complex,<br> behind Kumarakom restaurant, Bengaluru, <br>
 						Karnataka 560102
 					</address>
 				</div>
@@ -270,6 +331,8 @@
 			$("#users").hide();
 			$("#gender").hide();
 			$('.contact').hide();
+			$('#toplocations').hide();
+			$('#lastRegister').hide();
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 				$(this).toggleClass('active');
@@ -278,18 +341,24 @@
 				$(".line").hide();
 				$("#gender").hide();
 				$('.contact').hide();
+				$('#toplocations').hide();
+				$('#lastRegister').hide();
 				$("#users").show();
 			});
 			$('#genderWise').on('click', function() {
 				$(".line").hide();
 				$("#users").hide();
 				$('.contact').hide();
+				$('#toplocations').hide();
+				$('#lastRegister').hide();
 				$("#gender").show();
 			});
 			$('#home').on('click', function() {
 				$('#users').hide();
 				$('#gender').hide();
 				$('.contact').hide();
+				$('#toplocations').hide();
+				$('#lastRegister').hide();
 				$('.line').show();
 			});
 			$('#delete').on('click', function() {
@@ -300,12 +369,29 @@
 				$(".line").hide();
 				$("#gender").hide();
 				$('#users').hide();
+				$('#toplocations').hide();
+				$('#lastRegister').hide();
 				$('.contact').show();
+			});
+			$('#locations').on('click', function() {
+				$(".line").hide();
+				$("#gender").hide();
+				$('#users').hide();
+				$('.contact').hide();
+				$('#lastRegister').hide();
+				$('#toplocations').show();
+			});
+			$('#latest').on('click', function() {
+				$(".line").hide();
+				$("#gender").hide();
+				$('#users').hide();
+				$('.contact').hide();
+				$('#toplocations').hide();
+				$('#lastRegister').show();
 			});
 
 		});
 	</script>
-
 
 </body>
 </html>

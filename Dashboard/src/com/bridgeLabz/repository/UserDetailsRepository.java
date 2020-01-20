@@ -173,7 +173,6 @@ public class UserDetailsRepository {
 				jsonObject.put("state", resultSet.getString("State"));
 				jsonObject.put("zip", resultSet.getInt("Zip"));
 
-				System.out.println(jsonObject.toString());
 				return jsonObject;
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -196,6 +195,36 @@ public class UserDetailsRepository {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	@SuppressWarnings("unchecked")
+	public static JSONArray lastRegistered()
+	{
+		JSONArray jsonArray = new JSONArray();
+		String query = "SELECT * from users ORDER by Id desc";
+		
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
+		{
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("firstname", resultSet.getString("First_Name"));
+				jsonObject.put("lastname", resultSet.getString("Last_Name"));
+				jsonObject.put("email", resultSet.getString("Email"));
+				jsonObject.put("gender", resultSet.getString("Gender"));
+				jsonObject.put("dob", resultSet.getString("DOB"));
+				jsonObject.put("age", resultSet.getInt("Age"));
+				jsonObject.put("city", resultSet.getString("City"));
+				jsonObject.put("state", resultSet.getString("State"));
+				jsonObject.put("zip", resultSet.getInt("Zip"));
+				jsonArray.add(jsonObject);
+			}
+			return jsonArray;
+		} 
+		catch (ClassNotFoundException | SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
