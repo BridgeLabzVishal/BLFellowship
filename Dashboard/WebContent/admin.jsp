@@ -1,3 +1,4 @@
+
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.bridgeLabz.controller.LoginServlet"%>
@@ -67,7 +68,7 @@
 					</ul></li>
 				<li><a href="#" id="latest"><i class="fa fa-user-circle-o"
 						aria-hidden="true"></i> Latest Registered Users </a></li>
-				<li><a href="registration.jsp"><i class="fa fa-user"
+				<li><a href="adminRegister.jsp"><i class="fa fa-user"
 						aria-hidden="true"></i> New User</a></li>
 				<li><a href="#" id="contact"><i class="fa fa-phone"
 						aria-hidden="true"></i> Contact</a></li>

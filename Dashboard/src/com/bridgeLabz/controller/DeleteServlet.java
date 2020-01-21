@@ -15,18 +15,19 @@ import com.bridgeLabz.services.ServicesImpl;
 public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static RequestDispatcher requestDispatcher;
+	private  RequestDispatcher requestDispatcher;
 	IServices services = new ServicesImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
-
+		System.out.println(email);
 		boolean flag = services.deleteUserDetails(email);
 		
 		if (flag == true) {
 			requestDispatcher = request.getRequestDispatcher("admin.jsp");
-			requestDispatcher.include(request, response);
+			System.out.println(requestDispatcher);
+			requestDispatcher.forward(request, response);
 		} else {
 			
 			response.sendRedirect("admin.jsp");

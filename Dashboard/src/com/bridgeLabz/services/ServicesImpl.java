@@ -29,6 +29,24 @@ public class ServicesImpl implements IServices {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	public boolean addAdmin(Registration registration) {
+		jsonObject.put("firstname",registration.getFirstName());
+		jsonObject.put("lastname",registration.getLastName());
+		jsonObject.put("email",registration.getEmail());
+		jsonObject.put("password",registration.getPasswd());
+		jsonObject.put("gender",registration.getGender());
+		jsonObject.put("dob",registration.getDateOfBirth());
+		jsonObject.put("age",registration.getAge());
+		jsonObject.put("city",registration.getCity());
+		jsonObject.put("state",registration.getState());
+		jsonObject.put("zip",registration.getZip());
+		System.out.println(jsonObject.toString());
+		
+		return UserDetailsRepository.addAdmin(jsonObject);	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
 	public boolean authentication(Login login) 
 	{
 		jsonObject.put("email", login.getEmail());

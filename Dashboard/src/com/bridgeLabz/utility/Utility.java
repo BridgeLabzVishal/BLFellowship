@@ -11,7 +11,7 @@ public class Utility {
 		String user = "RedDevilVishal";
 		String passwd = "RAJvishal12@";
 		Connection con = null;
-		Class.forName("com.mysql.jdbc.Driver");
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		try {
 			con = DriverManager.getConnection(dbUrl, user, passwd);
 		} catch (Exception e) {
