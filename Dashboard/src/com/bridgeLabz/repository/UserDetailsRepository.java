@@ -268,5 +268,33 @@ public class UserDetailsRepository {
 		}
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static JSONObject getGenderDetails() throws ClassNotFoundException, SQLException {
+		JSONObject jsonObject = new JSONObject();
+		int male = 0;
+		int female = 0;
+
+		String query = "select * from users";
+
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) 
+			{
+				if(resultSet.getString("Gender").equalsIgnoreCase("male"))
+				{
+					male++;
+				}
+				else
+				{
+					female++;
+				}
+			}
+			jsonObject.put("male", male);
+			jsonObject.put("female", female);
+		}
+		return jsonObject;
+	}
+
 
 }

@@ -63,7 +63,7 @@
 								Locations</a></li>
 						<li><a href="#" id="genderWise"><i
 								class="fa fa-venus-mars" aria-hidden="true"></i> Gender Wise</a></li>
-						<li><a href="#"><i class="fa fa-male" aria-hidden="true"></i>
+						<li><a href="chart.jsp" id="agewise"><i class="fa fa-male" aria-hidden="true"></i>
 								Age Wise</a></li>
 					</ul></li>
 				<li><a href="#" id="latest"><i class="fa fa-user-circle-o"
