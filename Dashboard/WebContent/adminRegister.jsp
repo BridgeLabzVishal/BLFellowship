@@ -121,18 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-2">
-                            <i class="fa fa-user-circle" aria-hidden="true"></i> UserType
-                        </div>
-                        <div class="col-md-2">
-                            <input type="radio" name="usertype" id="user" value="user">User
-                            <input type="radio" name="usertype" id="admin" value="admin">Admin
-                        </div>
-                    </div>
-                </div>
-
+               
                 <div class="form-group ">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" value="submit" class="btn btn-outline-info text-center" id="submit">Submit</button>

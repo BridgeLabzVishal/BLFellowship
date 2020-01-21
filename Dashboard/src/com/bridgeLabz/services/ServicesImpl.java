@@ -40,7 +40,6 @@ public class ServicesImpl implements IServices {
 		jsonObject.put("city",registration.getCity());
 		jsonObject.put("state",registration.getState());
 		jsonObject.put("zip",registration.getZip());
-		System.out.println(jsonObject.toString());
 		
 		return UserDetailsRepository.addAdmin(jsonObject);	
 	}

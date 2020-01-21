@@ -310,7 +310,7 @@
 				</table>
 			</div>
 
-			<section class="contact" style="margin-top: 20%; margin-left: 10px;">
+			<section class="contact" style="margin-top: 10%; margin-left: 10px;">
 				<div class="container text-center">
 					<h2>CONTACT US</h2>
 					<address>

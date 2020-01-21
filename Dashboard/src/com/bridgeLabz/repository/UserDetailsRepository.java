@@ -125,7 +125,6 @@ public class UserDetailsRepository {
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				if (resultSet.getString("Email").equals(email))
-					System.out.println(resultSet);
 					return true;
 			}
 		} catch (Exception e) {
