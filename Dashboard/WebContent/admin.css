@@ -177,8 +177,8 @@ table {
 }
 
 .female td {
-	padding-left: 17px;
-	padding-right: 17px;
+	padding-left: 14px;
+	padding-right: 14px;
 	width: 100%;
 }
 
@@ -195,7 +195,7 @@ table {
 td {
 	border: 1px solid #dddddd;
 	text-align: center;
-	padding: 14px;
+	padding: 10px;
 }
 
 tr:nth-child(even) {
@@ -205,15 +205,16 @@ tr:nth-child(even) {
 #toplocations {
 	padding: 10px;
 	font-size: 16px;
-	margin: 8px;
+	margin: 10px;
 }
 
 #toplocations .heading td {
 	font-size: 18px;
 }
 
-#toplocations table td {
-	padding: 18px;
+#toplocations table tr td {
+	padding: 16px;
+	font-size:16px;
 }
 
 .contact {

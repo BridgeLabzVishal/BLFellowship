@@ -58,13 +58,10 @@
 					<ul class="collapse list-unstyled" id="homeSubmenu">
 						<li><a href="#" id="allusers"><i class="fa fa-history"
 								aria-hidden="true"></i> All Users</a></li>
-						<li><a href="#" id="locations"><i
-								class="fa fa-location-arrow" aria-hidden="true"></i> Top
-								Locations</a></li>
 						<li><a href="#" id="genderWise"><i
 								class="fa fa-venus-mars" aria-hidden="true"></i> Gender Wise</a></li>
-						<li><a href="chart.jsp" id="agewise"><i class="fa fa-male" aria-hidden="true"></i>
-								Age Wise</a></li>
+						<li><a href="bar.jsp?email=<%=session.getAttribute("Email")%>"><i class="fa fa-bar-chart"
+								aria-hidden="true"></i> Graphs</a></li>
 					</ul></li>
 				<li><a href="#" id="latest"><i class="fa fa-user-circle-o"
 						aria-hidden="true"></i> Latest Registered Users </a></li>
@@ -117,7 +114,6 @@
 			</nav>
 
 			<div class="line">
-
 				<h2>Collapsible Sidebar Using Bootstrap 4</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
 					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -134,8 +130,32 @@
 					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 					culpa qui officia deserunt mollit anim id est laborum.</p>
 
+
+				<div class="line1">
+					<h2>Collapsible Sidebar Using Bootstrap 4</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+						reprehenderit in voluptate velit esse cillum dolore eu fugiat
+						nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+						sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+						nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+						reprehenderit in voluptate velit esse cillum dolore eu fugiat
+						nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+						sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+				</div>
+
 			</div>
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 4%;"
+
+
+
+			<div class="col-sm-12" style="margin-left: 4px; margin-top: 4%;"
 				id="users">
 				<table>
 					<tr class="heading">
@@ -173,7 +193,7 @@
 				</table>
 			</div>
 
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 3%;"
+			<div class="col-sm-12" style="margin-left: 4px; margin-top: 3%;"
 				id="gender">
 				<table class="male">
 					<tr class="heading">
@@ -251,7 +271,7 @@
 				</table>
 			</div>
 
-			<div class="col-sm-12" style="margin-left: 10px; margin-top: 12%;"
+			<%-- <div class="col-md-10" style="margin-left: 12px; margin-top: 12%;"
 				id="toplocations">
 				<table>
 					<tr class="heading">
@@ -271,9 +291,9 @@
 						}
 					%>
 				</table>
-			</div>
+			</div> --%>
 
-			<div class="col-sm-12" style="margin-left: 6px; margin-top: 4%;"
+			<div class="col-sm-12" style="margin-left: 4px; margin-top: 4%;"
 				id="lastRegister">
 				<table>
 					<tr class="heading">
@@ -323,7 +343,7 @@
 					</address>
 				</div>
 			</section>
-			
+
 		</div>
 	</div>
 
@@ -332,7 +352,7 @@
 			$("#users").hide();
 			$("#gender").hide();
 			$('.contact').hide();
-			$('#toplocations').hide();
+			/* $('#toplocations').hide(); */
 			$('#lastRegister').hide();
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
@@ -342,7 +362,7 @@
 				$(".line").hide();
 				$("#gender").hide();
 				$('.contact').hide();
-				$('#toplocations').hide();
+				/* $('#toplocations').hide(); */
 				$('#lastRegister').hide();
 				$("#users").show();
 			});
@@ -350,7 +370,7 @@
 				$(".line").hide();
 				$("#users").hide();
 				$('.contact').hide();
-				$('#toplocations').hide();
+				/* $('#toplocations').hide(); */
 				$('#lastRegister').hide();
 				$("#gender").show();
 			});
@@ -358,7 +378,7 @@
 				$('#users').hide();
 				$('#gender').hide();
 				$('.contact').hide();
-				$('#toplocations').hide();
+				/* $('#toplocations').hide(); */
 				$('#lastRegister').hide();
 				$('.line').show();
 			});
@@ -370,26 +390,27 @@
 				$(".line").hide();
 				$("#gender").hide();
 				$('#users').hide();
-				$('#toplocations').hide();
+				/* $('#toplocations').hide(); */
 				$('#lastRegister').hide();
 				$('.contact').show();
 			});
-			$('#locations').on('click', function() {
+			/* $('#locations').on('click', function() {
 				$(".line").hide();
 				$("#gender").hide();
 				$('#users').hide();
 				$('.contact').hide();
 				$('#lastRegister').hide();
 				$('#toplocations').show();
-			});
+			}); */
 			$('#latest').on('click', function() {
 				$(".line").hide();
 				$("#gender").hide();
 				$('#users').hide();
 				$('.contact').hide();
-				$('#toplocations').hide();
+				/* $('#toplocations').hide(); */
 				$('#lastRegister').show();
 			});
+
 
 		});
 	</script>

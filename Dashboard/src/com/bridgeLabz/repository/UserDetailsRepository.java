@@ -282,13 +282,9 @@ public class UserDetailsRepository {
 			while (resultSet.next()) 
 			{
 				if(resultSet.getString("Gender").equalsIgnoreCase("male"))
-				{
 					male++;
-				}
 				else
-				{
 					female++;
-				}
 			}
 			jsonObject.put("male", male);
 			jsonObject.put("female", female);
@@ -296,5 +292,51 @@ public class UserDetailsRepository {
 		return jsonObject;
 	}
 
+	@SuppressWarnings("unchecked")
+	public static JSONArray getUserState() throws ClassNotFoundException, SQLException
+	{
+		JSONArray jsonArray = new JSONArray();
+		
+		 String query = "SELECT State,count(*) as Times from users GROUP BY State";
+		 
+		 try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
+		 {
+			 resultSet = statement.executeQuery();
+			 while(resultSet.next())
+			 {
+				/*
+				 * JSONObject jsonObject = new JSONObject(); jsonObject.put("state",
+				 * resultSet.getString("State")); jsonObject.put("times",
+				 * resultSet.getString("Times"));
+				 */
+				 jsonArray.add(resultSet.getString("State"));;
+			 }
+		 }
+		 return jsonArray;
+	}
 
+	@SuppressWarnings("unchecked")
+	public static JSONArray getStateTimes() throws ClassNotFoundException, SQLException
+	{
+		JSONArray jsonArray = new JSONArray();
+		
+		 String query = "SELECT State,count(*) as Times from users GROUP BY State";
+		 
+		 try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
+		 {
+			 resultSet = statement.executeQuery();
+			 while(resultSet.next())
+			 {
+//				 JSONObject jsonObject = new JSONObject();
+//				 jsonObject.put("state", resultSet.getString("State"));
+//				 jsonObject.put("times", resultSet.getString("Times"));
+				 jsonArray.add(resultSet.getString("Times"));
+			 }
+		 }
+		 return jsonArray;
+	}
+	
+	
+	
+	
 }
