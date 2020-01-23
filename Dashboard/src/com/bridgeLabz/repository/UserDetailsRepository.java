@@ -36,11 +36,11 @@ public class UserDetailsRepository {
 		}
 		return false;
 	}
-	
+
 	public static boolean addAdmin(JSONObject jsonObject) {
 		String query = "insert into admin(First_Name, Last_Name, Email, Password, Gender, DOB, Age, City, State, Zip) values(?,?,?,?,?,?,?,?,?,?)";
 
-		System.out.println("add admin : "+jsonObject.toString());
+		System.out.println("add admin : " + jsonObject.toString());
 		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query)) {
 			statement.setString(1, jsonObject.get("firstname").toString());
 			statement.setString(2, jsonObject.get("lastname").toString());
@@ -63,7 +63,6 @@ public class UserDetailsRepository {
 		}
 		return false;
 	}
-
 
 	public static boolean authenticateUser(JSONObject jsonObject) {
 		String email = (String) jsonObject.get("email");
@@ -118,7 +117,7 @@ public class UserDetailsRepository {
 		}
 		return false;
 	}
-	
+
 	public static boolean getAdminDetails(String email) {
 		String query = "select * from admin";
 		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
@@ -222,30 +221,27 @@ public class UserDetailsRepository {
 		}
 		return null;
 	}
-	
+
 	public static boolean deleteUser(String email) {
 		String deleteQuery = "DELETE FROM users where Email=?";
-		
-		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(deleteQuery);)
-		{
+
+		try (Connection con = Utility.dbConnection();
+				PreparedStatement statement = con.prepareStatement(deleteQuery);) {
 			statement.setString(1, email);
-			boolean result = statement.executeUpdate()>0;
+			boolean result = statement.executeUpdate() > 0;
 			return result;
-		} 
-		catch (SQLException | ClassNotFoundException e) 
-		{
+		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
+
 	@SuppressWarnings("unchecked")
-	public static JSONArray lastRegistered()
-	{
+	public static JSONArray lastRegistered() {
 		JSONArray jsonArray = new JSONArray();
 		String query = "SELECT * from users ORDER by Id desc";
-		
-		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
-		{
+
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				JSONObject jsonObject = new JSONObject();
@@ -261,14 +257,12 @@ public class UserDetailsRepository {
 				jsonArray.add(jsonObject);
 			}
 			return jsonArray;
-		} 
-		catch (ClassNotFoundException | SQLException e) 
-		{
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static JSONObject getGenderDetails() throws ClassNotFoundException, SQLException {
 		JSONObject jsonObject = new JSONObject();
@@ -279,9 +273,8 @@ public class UserDetailsRepository {
 
 		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
 			resultSet = statement.executeQuery();
-			while (resultSet.next()) 
-			{
-				if(resultSet.getString("Gender").equalsIgnoreCase("male"))
+			while (resultSet.next()) {
+				if (resultSet.getString("Gender").equalsIgnoreCase("male"))
 					male++;
 				else
 					female++;
@@ -293,50 +286,38 @@ public class UserDetailsRepository {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static JSONArray getUserState() throws ClassNotFoundException, SQLException
-	{
+	public static JSONArray getUserState() throws ClassNotFoundException, SQLException {
 		JSONArray jsonArray = new JSONArray();
-		
-		 String query = "SELECT State,count(*) as Times from users GROUP BY State";
-		 
-		 try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
-		 {
-			 resultSet = statement.executeQuery();
-			 while(resultSet.next())
-			 {
+
+		String query = "SELECT State,count(*) as Times from users GROUP BY State";
+
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
 				/*
 				 * JSONObject jsonObject = new JSONObject(); jsonObject.put("state",
 				 * resultSet.getString("State")); jsonObject.put("times",
 				 * resultSet.getString("Times"));
 				 */
-				 jsonArray.add(resultSet.getString("State"));;
-			 }
-		 }
-		 return jsonArray;
+				jsonArray.add(resultSet.getString("State"));
+				;
+			}
+		}
+		return jsonArray;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static JSONArray getStateTimes() throws ClassNotFoundException, SQLException
-	{
+	public static JSONArray getStateTimes() throws ClassNotFoundException, SQLException {
 		JSONArray jsonArray = new JSONArray();
-		
-		 String query = "SELECT State,count(*) as Times from users GROUP BY State";
-		 
-		 try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);)
-		 {
-			 resultSet = statement.executeQuery();
-			 while(resultSet.next())
-			 {
-//				 JSONObject jsonObject = new JSONObject();
-//				 jsonObject.put("state", resultSet.getString("State"));
-//				 jsonObject.put("times", resultSet.getString("Times"));
-				 jsonArray.add(resultSet.getString("Times"));
-			 }
-		 }
-		 return jsonArray;
+
+		String query = "SELECT State,count(*) as Times from users GROUP BY State";
+
+		try (Connection con = Utility.dbConnection(); PreparedStatement statement = con.prepareStatement(query);) {
+			resultSet = statement.executeQuery();
+			while (resultSet.next())
+				jsonArray.add(resultSet.getString("Times"));
+		}
+		return jsonArray;
 	}
-	
-	
-	
-	
+
 }

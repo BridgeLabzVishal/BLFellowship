@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!DOCTYPE html>
 <html>
 
@@ -69,8 +69,8 @@
 						<i class="fa fa-user-circle" aria-hidden="true"></i> <label
 							class="label col-md-5 control-label">UserType</label>
 						<div class="radiobutton">
-							<input type="radio" name="radio" id="admin" value="admin">Admin <input
-								type="radio" name="radio" id="user" value="user">User
+							<input type="radio" name="radio" id="admin" value="admin">Admin
+							<input type="radio" name="radio" id="user" value="user">User
 						</div>
 					</div>
 				</div>

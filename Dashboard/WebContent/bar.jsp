@@ -33,14 +33,15 @@ img {
 	border: 1px solid blueviolet;
 	border-radius: 50%;
 }
-</style>	
-	
+</style>
+
 </head>
 <body>
 	<div class="container-fluid">
 		<nav class="navbar navbar-expand-md bg-primary navbar-dark ">
 			<div class="container">
-				<a href="#" class="navbar-brand text-warning font-weight-bold"><img src="image/logo.png" alt="logo" /><strong>TESLA</strong></a>
+				<a href="#" class="navbar-brand text-warning font-weight-bold"><img
+					src="image/logo.png" alt="logo" /><strong>TESLA</strong></a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#collapsenavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -65,13 +66,13 @@ img {
 
 			<div class="col-sm-6" style="margin-left: 20%;">
 				<div class="well"
-					style="box-shadow: 1px 5px 8px #888888; margin-top: 6%;border: 2px solid red; padding-bottom: 20px;margin-bottom: 10%;">
+					style="box-shadow: 1px 5px 8px #888888; margin-top: 6%; border: 2px solid red; padding-bottom: 20px; margin-bottom: 10%;">
 					<canvas id="pieChart" style="overflow-x: auto;"></canvas>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
 	var states = [];
 	var times = [];
@@ -145,7 +146,8 @@ img {
 		array = UserDetailsRepository.getGenderDetails();
 	%>
 	<script>
-		var data = ['<%=array.get("male")%>', '<%=array.get("female")%>'];
+		var data = ['<%=array.get("male")%>', '<%=array.get("female")%>
+		' ];
 		var namelabel = [ 'Male', 'Female' ];
 		var ctx = document.getElementById('pieChart');
 		var myChart = new Chart(ctx, {
@@ -177,7 +179,6 @@ img {
 			}
 		});
 	</script>
-
 
 </body>
 </html>
