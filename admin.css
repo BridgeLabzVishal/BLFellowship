@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700");
+.wrapper {
+  padding: 70px;
+  color: grey;
+  box-sizing: border-box;
+  font-family: 'Roboto', 'sans-serif';
+  font-weight: lighter;
+}
+.col-md-6{
+  margin: auto;
+}
+.panel-body{
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  padding-left: 5%;
+  padding-top: 6%;
+  padding-right: 5%;
+  padding-bottom: 5%;
+}
+img{
+  border: 1px solid grey;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+p{
+  color: #31708f;
+  background-color: #d9edf7;
+  border: 1px solid #bce8f1;
+  border-radius: 4px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding:2%;
+}
+@media ( max-width :479px) {
+  .panel-body{
+    margin: auto !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    padding-bottom: 5% !important; 
+    padding-top: 6% !important;
+  }
+  
+}
+  
+  
